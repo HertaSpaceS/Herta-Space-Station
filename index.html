@@ -1,0 +1,161 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Herta Space Station - Official Database</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: url('https://i.pinimg.com/736x/5d/d2/4d/5dd24dbc9c30a87a49a58e645650d2bc.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+    }
+    header {
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 1em;
+      text-align: center;
+    }
+    .menu-button {
+      position: fixed;
+      top: 1em;
+      left: 1em;
+      z-index: 1001;
+      cursor: pointer;
+    }
+    .menu-button div {
+      width: 30px;
+      height: 4px;
+      background-color: white;
+      margin: 6px 0;
+    }
+    nav {
+      height: 100vh;
+      width: 0;
+      position: fixed;
+      z-index: 1000;
+      top: 0;
+      left: 0;
+      background-color: rgba(0, 0, 0, 0.9);
+      overflow-x: hidden;
+      transition: 0.5s;
+      padding-top: 60px;
+    }
+    nav a {
+      display: block;
+      color: white;
+      padding: 1em;
+      text-decoration: none;
+      font-size: 1.2em;
+    }
+    nav a:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+    section {
+      padding: 2em;
+      background-color: rgba(0, 0, 0, 0.6);
+      margin: 2em;
+      border-radius: 10px;
+    }
+    form input, form textarea {
+      display: block;
+      margin: 0.5em 0;
+      padding: 0.5em;
+      width: 100%;
+      border: none;
+      border-radius: 5px;
+    }
+    form button {
+      background-color: #00aaff;
+      color: white;
+      padding: 0.5em 1em;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    footer {
+      text-align: center;
+      padding: 1em;
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+    .disabled-input {
+      text-decoration: line-through;
+      background-color: rgba(255, 255, 255, 0.2);
+      color: #aaa;
+      pointer-events: none;
+    }
+    .disclaimer {
+      font-size: 0.85em;
+      color: #ccc;
+      margin-top: 1em;
+    }
+  </style>
+</head>
+<body>  <header>
+    <h1>Herta Space Station</h1>
+    <p>Galactic Repository of Knowledge & Research</p>
+  </header>  <div class="menu-button" onclick="toggleNav()">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>  <nav id="sideNav">
+    <a href="#about">About</a>
+    <a href="#genius">Meet the Genius Society</a>
+    <a href="#store">Store</a>
+    <a href="#apply">Apply</a>
+    <a href="https://hsr.hoyoverse.com/en-us/home" target="_blank">???</a>
+  </nav>  <section id="about">
+    <h2>About the Station</h2>
+    <p>The Herta Space Station is a premier research facility in the Honkai Star Rail universe, run by the... incredibly enthusiastic and definitely not vain Herta. We specialize in collecting Curios, advancing interstellar science, and yelling at interns.</p>
+  </section>  <section id="genius">
+    <h2>Meet the Genius Society</h2>
+    <ul>
+      <li><strong>Herta</strong> – The #1 puppet and station owner (Don’t argue, she made the list.)</li>
+      <li><strong>Screwllum</strong> – Robotic philosopher and a master of logic. Absolutely not a toaster.</li>
+      <li><strong>Ruan Mei</strong> – Gentle genius with dangerous curiosity. Keep your specimens safe.</li>
+      <li><strong>Stephen Lloyd</strong> – Occasionally contributes. Often confused.</li>
+    </ul>
+  </section>  <section id="store">
+    <h2>Official Merchandise Store</h2>
+    <p>Get your simulated Herta dolls and Genius Society mugs here:</p>
+    <p><a href="https://store.hoyoverse.com" target="_blank">Visit Official Honkai Star Rail Store</a></p>
+  </section>  <section id="apply">
+    <h2>Apply to Join the Station</h2>
+    <p><em>"Hey, don't cry, the job application might not be real. Not like you can join up here anyway. Cheers." ♡ – Herta</em></p>
+    <form onsubmit="generateID(); return false;">
+      <label>Name:</label>
+      <input type="text" id="name" required><label>Email:</label>
+  <input type="email" id="email" required>
+
+  <label>Why do you want to join?</label>
+  <textarea id="reason" rows="4" required></textarea>
+
+  <label><s>Past Experience</s></label>
+  <input type="text" class="disabled-input" placeholder="Access Denied" disabled>
+
+  <button type="submit">Submit Application</button>
+</form>
+<div id="result" style="margin-top:1em;"></div>
+
+  </section>  <footer>
+    <p>&copy; Parody by a HSR Fan. Not affiliated with HoYoverse.</p>
+    <p class="disclaimer">This is a spoof/fan site. All trademarks belong to HoYoverse. Visit the official site <a href="https://hsr.hoyoverse.com/en-us/home" target="_blank" style="color:#00aaff;">here</a>.</p>
+  </footer>  <script>
+    function generateID() {
+      const name = document.getElementById('name').value;
+      const result = document.getElementById('result');
+      const idNum = Math.floor(Math.random() * 1000000);
+      const accessCode = Math.random().toString(36).substring(2, 10).toUpperCase();
+      result.innerHTML = `<p>Welcome, ${name}!<br>Your Station ID: #${idNum}<br>Access Code: ${accessCode}</p>`;
+    }
+
+    function toggleNav() {
+      const nav = document.getElementById('sideNav');
+      if (nav.style.width === '250px') {
+        nav.style.width = '0';
+      } else {
+        nav.style.width = '250px';
+      }
+    }
+  </script></body>
+</html>
